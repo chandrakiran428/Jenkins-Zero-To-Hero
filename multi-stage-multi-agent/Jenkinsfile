@@ -41,10 +41,11 @@ pipeline {
             steps {
                 script {
                     // Compile Java code
-                    sh 'javac Demo.java'
+                    sh 'javac /var/lib/jenkins/workspace/docker-agent/multi-stage-multi-agent/Demo.java'
 
                     // Run the compiled Java program
-                    sh 'java Demo'
+                   sh 'java /var/lib/jenkins/workspace/docker-agent/multi-stage-multi-agent/Demo'
+
                 }
             }
         }
