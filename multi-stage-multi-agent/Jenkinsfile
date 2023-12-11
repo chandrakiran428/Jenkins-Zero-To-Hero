@@ -1,4 +1,4 @@
-pipeline {
+/* pipeline {
   agent none
   stages {
     stage('Back-end') {
@@ -18,4 +18,34 @@ pipeline {
       }
     }
   }
+} */
+
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.8.1-adoptopenjdk-11'
+           // args '-v $HOME/.m2:/root/.m2' // Mount Maven cache to speed up builds
+        }
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Run') {
+            steps {
+                script {
+                    // Compile Java code
+                    sh 'javac Demo.java'
+
+                    // Run the compiled Java program
+                    sh 'java Demo'
+                }
+            }
+        }
+    }
 }
+
