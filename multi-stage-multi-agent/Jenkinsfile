@@ -40,13 +40,9 @@ pipeline {
         stage('Build and Run') {
             steps {
                 script {
-                    // Compile Java code
-                    sh 'javac /var/lib/jenkins/workspace/docker-agent/multi-stage-multi-agent/Demo.java'
-
-                    // Run the compiled Java program
-                   sh 'java /var/lib/jenkins/workspace/docker-agent/multi-stage-multi-agent/Demo'
-
-                }
+            sh 'javac /var/lib/jenkins/workspace/docker-agent/multi-stage-multi-agent/Demo.java'
+            sh 'java -classpath /var/lib/jenkins/workspace/docker-agent/multi-stage-multi-agent/Demo'
+        }
             }
         }
     }
